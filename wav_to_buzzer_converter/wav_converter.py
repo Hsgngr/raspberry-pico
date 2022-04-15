@@ -115,6 +115,9 @@ def convert_freq_to_tones(signal, fs, length):
         #plt.plot(small_part)
         #plt.plot(t, y)
         #plt.show()
+        if i > 10 * fs:  # if you wanna record more than 10 seconds comment out here.
+            break # and here
+
         tone = freq_from_autocorr_improved(small_part, fs)
         if type(tone) == list:
             tones.append(0)
@@ -124,11 +127,12 @@ def convert_freq_to_tones(signal, fs, length):
     return tones
 
 def wav_to_freq(file,length=0.01):
-    fs, signal = wavfile.read('ringtone/trimmed_kick.wav')
+    fs, signal = wavfile.read(file)
     signal = np.array(signal).mean(axis=1)
     #signal = signal[:, 0]  # use the first channel (or take their average, alternatively)
     tones = convert_freq_to_tones(signal, fs, length)
     return tones
+
 
 def record_tones(song_file,tones_file,length=0.01):
     with open(tones_file, 'w') as f:
@@ -138,6 +142,6 @@ def record_tones(song_file,tones_file,length=0.01):
 
 if __name__ == "__main__":
 
-    song_file = 'ringtone/trimmed_kick.wav'
+    song_file = "ringtone/nokia3310.wav"
     write_file = 'tones.txt'
-    record_tones(song_file,write_file)
+    record_tones(song_file,write_file,length=0.01)
