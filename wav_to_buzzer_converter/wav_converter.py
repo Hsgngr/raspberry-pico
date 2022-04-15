@@ -5,6 +5,7 @@ import numpy as np
 from scipy.io import wavfile
 from scipy.signal import correlate, fftconvolve
 import matplotlib.pyplot as plt
+from contextlib import redirect_stdout
 
 def indexes(y, thres=0.3, min_dist=1, thres_abs=False):
     """Peak detection routine borrowed from 
@@ -128,7 +129,15 @@ def wav_to_freq(file,length=0.01):
     #signal = signal[:, 0]  # use the first channel (or take their average, alternatively)
     tones = convert_freq_to_tones(signal, fs, length)
     return tones
-if __name__ == "__main__":
-    file = 'ringtone/trimmed_kick.wav'
 
-    print(wav_to_freq(file, length=0.01))
+def record_tones(song_file,tones_file,length=0.01):
+    with open(tones_file, 'w') as f:
+        with redirect_stdout(f):
+            print(wav_to_freq(song_file, length))
+
+
+if __name__ == "__main__":
+
+    song_file = 'ringtone/trimmed_kick.wav'
+    write_file = 'tones.txt'
+    record_tones(song_file,write_file)
