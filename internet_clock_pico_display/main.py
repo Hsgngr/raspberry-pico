@@ -136,6 +136,7 @@ def get_time():
     
 def update_clock_display():
     clear()
+    day_time,date = get_time()
     display.set_pen(YELLOW)
     display.text(day_time,int(w/4), int(h/4), 240, 8)            
     display.text(date,int(w/4), int(6*h/8), 240, 3)          
