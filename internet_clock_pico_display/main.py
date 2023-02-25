@@ -15,8 +15,8 @@ from picographics import PicoGraphics, DISPLAY_PICO_DISPLAY, PEN_P4
 led = machine.Pin("LED", machine.Pin.OUT)
 
 led.off()
-ssid = 'Michelangelo'
-password = 'MyB1gDav1d'
+ssid = ''
+password = ''
 
 # We're only using a few colours so we can use a 4 bit/16 colour palette and save RAM!
 display = PicoGraphics(display=DISPLAY_PICO_DISPLAY, pen_type=PEN_P4, rotate=0)
@@ -127,7 +127,7 @@ def get_time():
     if len(minutes) < 2:
         minutes = "0" + minutes       
     if len(seconds) < 2:
-        month = "0" + seconds
+        seconds = "0" + seconds
     
     day_time = f"{hours}:{minutes}"
     date = f"{day}/{month}/{year}"
@@ -141,15 +141,15 @@ def update_clock_display():
     display.text(day_time,int(w/4), int(h/4), 240, 8)            
     display.text(date,int(w/4), int(6*h/8), 240, 3)          
     display.update()
-    old_day_time = day_time
+    
+    return day_time,date 
     
 
 # set up
 update_time()
-old_day_time, old_date = get_time()
+old_day_time, old_date = update_clock_display()
 day_time = old_day_time
 date = old_date
-update_clock_display()
 
 while True:
     if button_a.read():                                   # if a button press is detected then...
@@ -183,11 +183,11 @@ while True:
     else:
         day_time, date = get_time()
         if day_time != old_day_time:
-            old_day_time = day_time
-            old_date = date
-            update_clock_display()
+             old_day_time, old_date = update_clock_display()
         
     time.sleep(0.1)  # this number is how frequently the Pico checks for button presses
 
         
+
+
 
