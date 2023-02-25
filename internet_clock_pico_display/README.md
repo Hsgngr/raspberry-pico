@@ -1,6 +1,7 @@
 # Raspberry Pi Pico W with Pico Display Real Time Clock
 
 A Digital Clock that uses WIFI to set the time. A Good example of using both Pico W and Pico Display.
+Out of 4 buttons 2 of them utilized. The X and Y buttons are used for setting the brigthness of the clock. The A and B buttons and the RGB LED can be used for other things, sending a ping etc.
 
 
 <p align="center">
