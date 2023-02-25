@@ -1,4 +1,4 @@
-# Raspberry Pi Pico, Pico W and Boards
+# Playground for Raspberry Pi Pico, Pico W and Other RP2040 Boards
 
-My raspberry pi pico playground to see the capabilities of the board, microPython.
+
 
