@@ -1,4 +1,4 @@
-# Raspberry - Pico
+# Raspberry Pi Pico, Pico W and Boards
 
-Hi This repository is my initial playground to see the capabilities of raspberry pico.
+My raspberry pi pico playground to see the capabilities of the board, microPython.
 
