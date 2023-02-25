@@ -7,16 +7,18 @@ import struct
 
 #DISPLAY RELATED
 import time
-from pimoroni import Button
+from pimoroni import Button,RGBLED
 from picographics import PicoGraphics, DISPLAY_PICO_DISPLAY, PEN_P4
 
 
 #WIFI settings
 led = machine.Pin("LED", machine.Pin.OUT)
-
 led.off()
-ssid = ''
-password = ''
+led = RGBLED(6, 7, 8)
+led.set_rgb(0, 0, 0)
+
+ssid = 'Michelangelo'
+password = 'MyB1gDav1d'
 
 # We're only using a few colours so we can use a 4 bit/16 colour palette and save RAM!
 display = PicoGraphics(display=DISPLAY_PICO_DISPLAY, pen_type=PEN_P4, rotate=0)
