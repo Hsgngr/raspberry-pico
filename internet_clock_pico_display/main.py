@@ -126,7 +126,23 @@ def update_clock_display():
     display.text(date,int(w/4), int(6*h/8), 240, 3)          
     display.update()
     
-    return day_time,date 
+    return day_time,date
+
+def display_back_light():
+    global back_light
+    start_point=25
+    n= 15
+    gap = 5
+    for i in range(round(back_light * 10)):
+        display.polygon([
+      (start_point, int(h/2)),
+      (start_point, int(h/2)-20),
+      (start_point+n,int(h/2)-20),
+      (start_point+n,int(h/2)),
+    ])
+        start_point = start_point + n + gap
+    display.set_pen(YELLOW)
+    display.text(f"level {round(back_light*10)}",int(3*w/8), int(h/8), 240, 3)
 
 #################################################################
 wlan = network.WLAN(network.STA_IF)
@@ -181,17 +197,17 @@ while True:
         update_clock_display()
     elif button_x.read():
         clear()
-        display.set_pen(MAGENTA)
+        display.set_pen(GREEN)
         change_backlight(display,amount=0.1)
-        display.text(f"{back_light}",int(w/4), int(h/4), 240, 4)
+        display_back_light()
         display.update()
         time.sleep(0.2)
         update_clock_display()
     elif button_y.read():
         clear()
         display.set_pen(GREEN)        
-        change_backlight(display,amount= -0.1)
-        display.text(f"{back_light}",int(w/4), int(h/4), 240, 4)
+        change_backlight(display,amount= -0.1)       
+        display_back_light()           
         display.update()
         time.sleep(0.2)
         update_clock_display()
