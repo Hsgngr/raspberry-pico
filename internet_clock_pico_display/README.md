@@ -36,3 +36,8 @@ def set_time():
     machine.RTC().datetime((tm[0], tm[1], tm[2], [6] + <YOUR_TIME_ZONE>, tm[3], tm[4], tm[5], 0))
  ```
   3) upload the `main.py` and it is ready to use!
+  
+  ## TODO
+  Instead of looping a while loop and waiting for button calls come up with a more energy efficient idea. 
+  
+  Here is an inspiration: https://electrocredible.com/raspberry-pi-pico-external-interrupts-button-micropython/
